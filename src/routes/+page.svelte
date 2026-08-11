@@ -5,3 +5,10 @@
 <main>
   <Dashboard />
 </main>
+
+<style>
+  :root {
+    color: var(--text);
+    background-color: var(--base);
+  }
+</style>

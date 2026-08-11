@@ -27,7 +27,10 @@
     <div style="display:flex;">
         <div>
             {#if !isCreatingNewWorld}
-                <button onclick={startCreatingNewWorld}>
+                <button
+                    class="dashboard-button"
+                    onclick={startCreatingNewWorld}
+                >
                     create new world
                 </button>
             {:else}
@@ -37,3 +40,18 @@
         <WorldList />
     </div>
 </main>
+
+<style>
+    .dashboard-button {
+        border: none;
+        color: var(--text);
+        background-color: var(--overlay);
+        font-size: 1rem;
+        padding: 0.5rem;
+        margin: 0.2rem;
+        border-radius: 0.5rem;
+    }
+    .dashboard-button:hover{
+        background-color: var(--surface);
+    }
+</style>

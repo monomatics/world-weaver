@@ -1,3 +1,4 @@
+mod entities;
 mod utils;
 mod worlds;
 
@@ -7,7 +8,8 @@ pub fn run() {
         .plugin(tauri_plugin_opener::init())
         .invoke_handler(tauri::generate_handler![
             worlds::create_new_world,
-            worlds::list_all_worlds
+            worlds::list_all_worlds,
+            entities::save_entity,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

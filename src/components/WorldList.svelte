@@ -2,6 +2,7 @@
     import { invoke } from "@tauri-apps/api/core";
     import { goto } from "$app/navigation";
     import { type World } from "../lib/dashboardUniversals.svelte";
+    import { worldState } from "$lib/workspaceStates.svelte";
 
     let isLoadingWorld = $state(true);
     let worlds = $state<World[]>([]);
@@ -17,9 +18,9 @@
         }
     }
 
-    async function openSelectedWorld(){
-        goto('/workspace')
-        // something something goes here?
+    async function openSelectedWorld(id: string, name: string) {
+        worldState.setWorldState(id, name);
+        goto("/workspace");
     }
 
     $effect(() => {
@@ -27,7 +28,7 @@
     });
 </script>
 
-<main>
+<main class="world-list-container">
     <div>
         {#if isLoadingWorld}
             loading worlds...
@@ -35,8 +36,31 @@
             no worlds found.
         {:else}
             {#each worlds as world (world.id)}
-                <button onclick={openSelectedWorld}>{world.name}</button>
+                <div>
+                    <button
+                        class="world-list-button"
+                        onclick={() => {
+                            openSelectedWorld(world.id, world.name);
+                        }}>{world.name}</button
+                    >
+                </div>
             {/each}
         {/if}
     </div>
 </main>
+
+<style>
+    .world-list-container {
+        background-color: var(--surface);
+        padding: 0.5rem;
+    }
+    .world-list-button {
+        border: none;
+        color: var(--text);
+        background-color: var(--overlay);
+        font-size: 1rem;
+        padding: 0.5rem;
+        margin: 0.2rem;
+        border-radius: 0.5rem;
+    }
+</style>
