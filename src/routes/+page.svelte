@@ -1,3 +1,7 @@
+<script lang="ts">
+  import Dashboard from "../Dashboard.svelte";
+</script>
+
 <main>
-  Hello World!
+  <Dashboard />
 </main>
