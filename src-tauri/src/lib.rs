@@ -9,7 +9,8 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             worlds::create_new_world,
             worlds::list_all_worlds,
-            entities::save_entity,
+            entities::create_new_entity,
+            entities::list_entity_categories
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

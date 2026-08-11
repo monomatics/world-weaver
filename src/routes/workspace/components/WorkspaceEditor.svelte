@@ -21,7 +21,7 @@
     });
 </script>
 
-<main>
+<main class="workspace-editor">
     <div class="workspace-editor" bind:this={element}></div>
 </main>
 
@@ -29,6 +29,7 @@
     .workspace-editor {
         background-color: var(--surface);
         padding: 0.5rem;
-        margin: 0.5rem; 
+        margin: 0.5rem;
+        width: 60%;
     }
 </style>
