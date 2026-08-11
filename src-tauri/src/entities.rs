@@ -65,3 +65,30 @@ pub async fn list_entity_categories(
 
     Ok(categories)
 }
+
+#[tauri::command]
+pub async fn list_entities_in_category(
+    app: AppHandle,
+    world_id: String,
+    category: String,
+) -> Result<Vec<Entity>, String> {
+    let dir = worlds_dir(&app)?;
+    let entity_dir = dir.join(world_id).join("entities").join(category);
+
+    let entries = fs::read_dir(&entity_dir).map_err(|e| e.to_string())?;
+
+    let mut entities = Vec::new();
+    for entry in entries {
+        if let Ok(entry) = entry {
+            if entry.path().is_file() {
+                if let Ok(json_data) = fs::read_to_string(entry.path()) {
+                    if let Ok(entity) = serde_json::from_str::<Entity>(&json_data) {
+                        entities.push(entity);
+                    }
+                }
+            }
+        }
+    }
+
+    Ok(entities)
+}

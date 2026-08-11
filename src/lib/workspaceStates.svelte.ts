@@ -13,4 +13,17 @@ class WorldState {
     }
 }
 
-export const worldState = new WorldState
+class EntityState {
+    savedEntityCategoryName = $state<string | null>(null)
+
+    setEntityState(name: string) {
+        this.savedEntityCategoryName = name;
+    }
+
+    clearEntityState() {    
+        this.savedEntityCategoryName = null;
+    }
+}
+
+    export const worldState = new WorldState
+    export const entityState = new EntityState

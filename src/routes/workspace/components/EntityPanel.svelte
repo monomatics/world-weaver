@@ -1,9 +1,12 @@
 <script lang="ts">
     import { invoke } from "@tauri-apps/api/core";
-    import { worldState } from "$lib/workspaceStates.svelte";
+    import { worldState, entityState } from "$lib/workspaceStates.svelte";
+    import { type Entity } from "$lib/dashboardUniversals.svelte";
+
     let isCreatingNewEntity = $state(false);
+    let isLoadingEntities = $state(true);
     let entityName = $state("untitled");
-    let entityCategory = $state("default");
+    let entityList = $state<Entity[]>([]);
 
     function startCreatingNewEntity() {
         isCreatingNewEntity = true;
@@ -15,7 +18,7 @@
 
     async function createNewEntity() {
         const name = entityName.trim();
-        const category = entityCategory.trim();
+        const category = entityState.savedEntityCategoryName?.trim();
         if (!name || !category) return;
         try {
             await invoke("create_new_entity", {
@@ -30,19 +33,60 @@
     }
 
     function handleKeydown(e: KeyboardEvent) {
-        if (e.key === 'Enter') createNewEntity();
-        if (e.key === 'Escape') stopCreatingNewEntity();
+        if (e.key === "Enter") createNewEntity();
+        if (e.key === "Escape") stopCreatingNewEntity();
     }
+
+    async function listEntitiesInCategory(category: string) {
+        isLoadingEntities = true;
+        try {
+            const entities: Entity[] = await invoke(
+                "list_entities_in_category",
+                {
+                    worldId: worldState.savedWorldId,
+                    category: category,
+                },
+            );
+            entityList = entities;
+        } catch (e) {
+            console.error(
+                `An error occurred while fetching entities in category ${category}:`,
+                e,
+            );
+        } finally {
+            isLoadingEntities = false;
+        }
+    }
+
+    $effect(() => {
+        if (worldState.savedWorldId) {
+            listEntitiesInCategory(entityState.savedEntityCategoryName?);
+        }
+    });
 </script>
 
 <main class="entity-panel-container">
+    {#if isLoadingEntities}
+        loading entities...
+    {:else if entityList.length === 0}
+        no entities found.
+    {:else}
+        {#each entityList as entity (entity.id)}
+            <div>
+                <button>{entity.name}</button>
+            </div>
+        {/each}
+    {/if}
+
     {#if !isCreatingNewEntity}
         <div>
             <button onclick={startCreatingNewEntity}>create new entity</button>
         </div>
     {:else}
         <div><input bind:value={entityName} onkeydown={handleKeydown} /></div>
-        <div><input bind:value={entityCategory} onkeydown={handleKeydown}/></div>
+        <div>
+            <input bind:value={entityState.savedEntityCategoryName} onkeydown={handleKeydown} />
+        </div>
         <div><button>create new Entity</button></div>
     {/if}
 </main>

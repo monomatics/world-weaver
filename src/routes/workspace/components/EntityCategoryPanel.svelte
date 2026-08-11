@@ -1,6 +1,6 @@
 <script lang="ts">
     import { invoke } from "@tauri-apps/api/core";
-    import { worldState } from "$lib/workspaceStates.svelte";
+    import { worldState, entityState } from "$lib/workspaceStates.svelte";
 
     let entityCategories = $state<string[]>([]);
 
@@ -21,6 +21,7 @@
         }
     }
 
+
     $effect(() => {
         if (worldState.savedWorldId) {
             fetchEntityCategories();
@@ -32,7 +33,7 @@
     <b>Entity Categories</b>
     {#each entityCategories as category}
         <div>
-            <button>{category}</button>
+            <button onclick={() => entityState.setEntityState(category)}>{category}</button>
         </div>
     {/each}
 </main>
