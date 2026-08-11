@@ -47,6 +47,44 @@ pub async fn create_new_entity(
 }
 
 #[tauri::command]
+pub async fn get_entity(
+    app: AppHandle,
+    world_id: String,
+    category: String,
+    entity_id: String,
+) -> Result<Entity, String> {
+    let dir = worlds_dir(&app)?;
+    let file_path = dir
+        .join(world_id)
+        .join("entities")
+        .join(category)
+        .join(format!("{}.json", entity_id));
+
+    let json_data = fs::read_to_string(file_path).map_err(|e| e.to_string())?;
+    let entity = serde_json::from_str::<Entity>(&json_data).map_err(|e| e.to_string())?;
+    Ok(entity)
+}
+
+#[tauri::command]
+pub async fn update_entity(
+    app: AppHandle,
+    world_id: String,
+    category: String,
+    entity: Entity,
+) -> Result<(), String> {
+    let dir = worlds_dir(&app)?;
+    let file_path = dir
+        .join(world_id)
+        .join("entities")
+        .join(category)
+        .join(format!("{}.json", entity.id));
+
+    let json_data = serde_json::to_string_pretty(&entity).map_err(|e| e.to_string())?;
+    fs::write(file_path, json_data).map_err(|e| e.to_string())?;
+    Ok(())
+}
+
+#[tauri::command]
 pub async fn list_entity_categories(
     app: AppHandle,
     world_id: String,

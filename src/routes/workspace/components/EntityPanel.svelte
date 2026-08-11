@@ -1,6 +1,10 @@
 <script lang="ts">
     import { invoke } from "@tauri-apps/api/core";
-    import { worldState, entityState } from "$lib/workspaceStates.svelte";
+    import {
+        worldState,
+        entityCategoryState,
+        entityState,
+    } from "$lib/workspaceStates.svelte";
     import { type Entity } from "$lib/dashboardUniversals.svelte";
 
     let isCreatingNewEntity = $state(false);
@@ -18,7 +22,7 @@
 
     async function createNewEntity() {
         const name = entityName.trim();
-        const category = entityState.savedEntityCategoryName?.trim();
+        const category = entityCategoryState.savedEntityCategoryName?.trim();
         if (!name || !category) return;
         try {
             await invoke("create_new_entity", {
@@ -60,7 +64,9 @@
 
     $effect(() => {
         if (worldState.savedWorldId) {
-            listEntitiesInCategory(entityState.savedEntityCategoryName?);
+            listEntitiesInCategory(
+                entityCategoryState.savedEntityCategoryName?.trim() || "",
+            );
         }
     });
 </script>
@@ -73,7 +79,12 @@
     {:else}
         {#each entityList as entity (entity.id)}
             <div>
-                <button>{entity.name}</button>
+                <button
+                    onclick={() =>
+                        entityState.setEntityState(entity.id, entity.name)}
+                >
+                    {entity.name}
+                </button>
             </div>
         {/each}
     {/if}
@@ -85,7 +96,10 @@
     {:else}
         <div><input bind:value={entityName} onkeydown={handleKeydown} /></div>
         <div>
-            <input bind:value={entityState.savedEntityCategoryName} onkeydown={handleKeydown} />
+            <input
+                bind:value={entityCategoryState.savedEntityCategoryName}
+                onkeydown={handleKeydown}
+            />
         </div>
         <div><button>create new Entity</button></div>
     {/if}

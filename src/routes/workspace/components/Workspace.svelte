@@ -2,6 +2,7 @@
     import { worldState } from "$lib/workspaceStates.svelte";
     import EntityPanel from "./EntityPanel.svelte";
     import EntityCategoryPanel from "./EntityCategoryPanel.svelte";
+    import EntityMetadata from "./EntityMetadata.svelte";
     import WorkspaceEditor from "./WorkspaceEditor.svelte";
 </script>
 
@@ -11,12 +12,15 @@
     <div style="display:flex;">
         <EntityCategoryPanel />
         <EntityPanel />
-        <WorkspaceEditor />
+        <div>
+            <EntityMetadata />
+            <WorkspaceEditor />
+        </div>
     </div>
 </main>
 
 <style>
-    .workspace-label{
+    .workspace-label {
         background-color: var(--surface);
         padding: 0.2rem;
         margin: 0.4rem;

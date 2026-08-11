@@ -13,17 +13,33 @@ class WorldState {
     }
 }
 
-class EntityState {
+class EntityCategoryState {
     savedEntityCategoryName = $state<string | null>(null)
 
-    setEntityState(name: string) {
+    setEntityCategoryState(name: string) {
         this.savedEntityCategoryName = name;
     }
 
-    clearEntityState() {    
+    clearEntityCategoryState() {    
         this.savedEntityCategoryName = null;
     }
 }
 
+class EntityState {
+    savedEntityId = $state<string | null>(null);
+    savedEntityName = $state<string | null>(null);
+
+    setEntityState(id: string, name: string) {
+        this.savedEntityId = id;
+        this.savedEntityName = name;
+    }
+
+    clearEntityState() {
+        this.savedEntityId = null;
+        this.savedEntityName = null;
+    }
+}
+
     export const worldState = new WorldState
+    export const entityCategoryState = new EntityCategoryState
     export const entityState = new EntityState

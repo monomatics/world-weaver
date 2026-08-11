@@ -11,7 +11,9 @@ pub fn run() {
             worlds::list_all_worlds,
             entities::create_new_entity,
             entities::list_entity_categories,
-            entities::list_entities_in_category
+            entities::list_entities_in_category,
+            entities::get_entity,
+            entities::update_entity,
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");
