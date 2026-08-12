@@ -12,7 +12,7 @@
     <div style="display:flex;">
         <EntityCategoryPanel />
         <EntityPanel />
-        <div>
+        <div class="workspace-editor">
             <EntityMetadata />
             <WorkspaceEditor />
         </div>
@@ -24,5 +24,11 @@
         background-color: var(--surface);
         padding: 0.2rem;
         margin: 0.4rem;
+    }
+    .workspace-editor {
+        background-color: var(--surface);
+        padding: 0.5rem;
+        margin: 0.5rem;
+        width: 60%;
     }
 </style>

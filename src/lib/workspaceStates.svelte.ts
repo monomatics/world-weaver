@@ -1,3 +1,6 @@
+import { type Entity } from "./dashboardUniversals.svelte";
+import { invoke } from "@tauri-apps/api/core";
+
 class WorldState {
     savedWorldId = $state<string | null>(null);
     savedWorldName = $state<string | null>(null);
@@ -28,6 +31,7 @@ class EntityCategoryState {
 class EntityState {
     savedEntityId = $state<string | null>(null);
     savedEntityName = $state<string | null>(null);
+    savedEntity = $state<Entity | null>(null)
 
     setEntityState(id: string, name: string) {
         this.savedEntityId = id;
@@ -39,6 +43,20 @@ class EntityState {
         this.savedEntityName = null;
     }
 }
+
+export async function fetchEntity(entity_id: string) {
+        if (!entity_id) return;
+        try {
+            const fetchedEntity: Entity = await invoke("get_entity", {
+                worldId: worldState.savedWorldId,
+                category: entityCategoryState.savedEntityCategoryName,
+                entityId: entity_id,
+            });
+            entityState.savedEntity = fetchedEntity;
+        } catch (e) {
+            console.error("An error occurred while fetching the entity:", e);
+        }
+    }
 
     export const worldState = new WorldState
     export const entityCategoryState = new EntityCategoryState

@@ -14,23 +14,24 @@
   "license": "MIT",
   "dependencies": {
     "@lucide/svelte": "^1.31.0",
-    "@tauri-apps/api": "^2",
-    "@tauri-apps/plugin-opener": "^2",
-    "@tiptap/core": "^3.29.2",
-    "@tiptap/pm": "^3.29.2",
-    "@tiptap/starter-kit": "^3.29.2",
+    "@tauri-apps/api": "^2.11.1",
+    "@tauri-apps/plugin-opener": "^2.5.4",
+    "@tiptap/core": "^3.30.0",
+    "@tiptap/markdown": "^3.30.0",
+    "@tiptap/pm": "^3.30.0",
+    "@tiptap/starter-kit": "^3.30.0",
     "bits-ui": "^2.18.1",
     "esbuild": "^0.25.12"
   },
   "devDependencies": {
-    "@sveltejs/adapter-static": "^3.0.6",
-    "@sveltejs/kit": "^2.9.0",
-    "@sveltejs/vite-plugin-svelte": "^5.0.0",
-    "@tauri-apps/cli": "^2",
-    "svelte": "^5.0.0",
-    "svelte-check": "^4.0.0",
+    "@sveltejs/adapter-static": "^3.0.10",
+    "@sveltejs/kit": "^2.70.2",
+    "@sveltejs/vite-plugin-svelte": "^5.1.1",
+    "@tauri-apps/cli": "^2.11.4",
+    "svelte": "^5.56.8",
+    "svelte-check": "^4.7.5",
     "typescript": "~5.6.2",
-    "vite": "^6.0.3"
+    "vite": "^6.4.3"
   },
   "allowScripts": {
     "esbuild@0.25.12": true
