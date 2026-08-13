@@ -4,6 +4,8 @@
         fetchEntity,
     } from "$lib/workspaceStates.svelte";
 
+    let isDirty = $state(false)
+
     $effect(() => {
         if (!entityState.savedEntityId) return;
         fetchEntity(entityState.savedEntityId);
@@ -22,7 +24,7 @@
             <input class="metadata-input" bind:value={entityState.savedEntity.category} />
         </div>
         <div>
-            <b>ID:</b> <input class="metadata-input" bind:value={entityState.savedEntity.id} />
+            <b>ID:</b> {entityState.savedEntity.id}
         </div>
     {:else}
         <div>No entity selected.</div>
