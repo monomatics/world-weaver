@@ -79,7 +79,7 @@
     {:else}
         {#each entityList as entity (entity.id)}
             <div>
-                <button
+                <button class="entities-button"
                     onclick={() =>
                         entityState.setEntityState(entity.id, entity.name)}
                 >
@@ -101,14 +101,24 @@
                 onkeydown={handleKeydown}
             />
         </div>
-        <div><button>create new Entity</button></div>
     {/if}
 </main>
 
 <style>
+    .entities-button{
+        border: none;
+        background-color: var(--primary);
+        color: var(--text);
+        padding: 0.55rem;
+        font-size: 1rem;
+        width: 100%;
+    }
     .entity-panel-container {
         background-color: var(--surface);
-        padding: 0.5rem;
         margin: 0.5rem;
+        padding: 1rem;
+        border-radius: 2rem;
+        height: max(40rem, 85vh);
+        width: 15%;
     }
 </style>

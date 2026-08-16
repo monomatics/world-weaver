@@ -32,11 +32,11 @@
     });
 </script>
 
-<main>
-    <b>Entity Categories</b>
+<main class="main-container">
+    <span class="categories-label">entity categories</span>
     {#each entityCategories as category}
         <div>
-            <button
+            <button class="categories-button"
                 onclick={() =>
                     entityCategoryState.setEntityCategoryState(category)}
                 >{category}</button
@@ -44,3 +44,27 @@
         </div>
     {/each}
 </main>
+
+<style>
+    .main-container{
+        background-color:var(--surface);
+        margin: 0.5rem;
+        border-radius: 2rem;
+        height: max(40rem, 85vh);
+        width: 15%;
+    }
+   .categories-label{
+       margin: 1rem;
+       padding: 1rem;
+       text-align: center;
+   }
+    .categories-button{
+        border: none;
+        background-color: var(--primary);
+        color: var(--text);
+        padding: 0.55rem;
+        font-size: 1rem;
+        width: 100%;
+
+    }
+</style>

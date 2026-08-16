@@ -1,10 +1,8 @@
 :root {
     --base: #141218;
-    --surface: #4F378B;
+    --surface: #4A4458;
     --overlay: #49454F;
     --primary: #633B48;
-    --primary-container: #4F378B;
     --on-primary-container: #EADDFF;
-    --secondary-container: #4A4458;
     --text: #E6E0E9;
 }

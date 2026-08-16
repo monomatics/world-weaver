@@ -129,7 +129,6 @@
         word-break: break-word;
     }
 
-    /* Status States (Loading, Empty, Error) */
     .state-container {
         display: flex;
         flex-direction: column;
