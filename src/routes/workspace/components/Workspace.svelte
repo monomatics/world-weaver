@@ -34,7 +34,7 @@
         padding: 0.2rem;
         margin: 0.4rem;
     }
-    .workspace-editor {saveContent
+    .workspace-editor {
         background-color: var(--surface);
         padding: 0.5rem;
         margin: 0.5rem;

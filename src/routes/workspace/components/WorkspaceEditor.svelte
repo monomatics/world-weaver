@@ -77,7 +77,7 @@
 
 <style>
     .workspace-editor {
-        background-color: var(--surface);
+        background-color: var(--secondary-container);
         padding: 0.5rem;
         margin: 0.5rem;
         width: 60%;

@@ -10,6 +10,7 @@ pub struct World {
     name: String,
     created_at: u64,
     modified_at: u64,
+    description: String,
 }
 
 #[tauri::command]
@@ -24,6 +25,7 @@ pub async fn create_new_world(app: AppHandle, name: String) -> Result<(), String
         name,
         created_at: get_current_timestamp(),
         modified_at: get_current_timestamp(),
+        description: "".to_string(),
     };
 
     let meta = world_dir.join("world.json");

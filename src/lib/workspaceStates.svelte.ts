@@ -1,9 +1,10 @@
-import { type Entity } from "./dashboardUniversals.svelte";
+import { type Entity, type World } from "./dashboardUniversals.svelte";
 import { invoke } from "@tauri-apps/api/core";
 
 class WorldState {
   savedWorldId = $state<string | null>(null);
   savedWorldName = $state<string | null>(null);
+  savedWorld = $state<World | null>(null);
 
   setWorldState(id: string, name: string) {
     this.savedWorldId = id;

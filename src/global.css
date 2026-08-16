@@ -1,6 +1,10 @@
 :root {
-    --base: #191724;
-    --surface: #1f1d2e;
-    --overlay: #26233a;
-    --text: #e0def4
+    --base: #141218;
+    --surface: #4F378B;
+    --overlay: #49454F;
+    --primary: #633B48;
+    --primary-container: #4F378B;
+    --on-primary-container: #EADDFF;
+    --secondary-container: #4A4458;
+    --text: #E6E0E9;
 }
