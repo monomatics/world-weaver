@@ -11,7 +11,7 @@ export interface Entity {
   name: string;
   category: string;
   thumbnail_path: string;
-  metadata: { string: string };
+  metadata: Record<string, string>;
   content: string;
   tags: string[];
   world_id: string;

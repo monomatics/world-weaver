@@ -3,7 +3,6 @@
     import {
         worldState,
         entityCategoryState,
-        entityState
     } from "$lib/workspaceStates.svelte";
 
     let entityCategories = $state<string[]>([]);

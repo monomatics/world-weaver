@@ -38,7 +38,7 @@
         clearTimeout(saveTimeout);
     });
 
-    export async function saveContent() {
+    async function saveContent() {
         if (
             entityState.savedEntity == null ||
             !editorState.editor ||
