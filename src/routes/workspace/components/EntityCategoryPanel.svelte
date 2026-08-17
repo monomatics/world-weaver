@@ -46,7 +46,6 @@
 
 <style>
     .main-container{
-        background-color:var(--surface);
         margin: 0.5rem;
         border-radius: 2rem;
         height: max(40rem, 85vh);

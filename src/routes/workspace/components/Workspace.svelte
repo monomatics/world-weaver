@@ -65,7 +65,6 @@
         display: flex;
     }
     .workspace-editor {
-        background-color: var(--surface);
         margin: 0.5rem;
         padding: 1rem;
         border-radius: 2rem;
